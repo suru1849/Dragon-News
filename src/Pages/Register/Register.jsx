@@ -1,11 +1,28 @@
 import { Link } from "react-router-dom";
 import NavBar from "../../Components/Header/NavBar/NavBar";
+import useAuthData from "../../Hook/useAuthData/useAuthData";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
+  const { createUser } = useAuthData();
+
   const handleRegister = (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    console.log(form.get("email"), form.get("password"));
+    const name = form.get("name");
+    const photoUrl = form.get("photoUrl");
+    const email = form.get("email");
+    const password = form.get("password");
+
+    // Creating user
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully Register!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // clear target
     event.target.reset();
@@ -40,7 +57,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="photoUrl"
-                    placeholder="Photo Url"
+                    placeholder="Photo URL"
                     className="input input-bordered"
                   />
                 </div>

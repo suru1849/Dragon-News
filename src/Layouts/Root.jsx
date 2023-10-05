@@ -1,10 +1,11 @@
-import PropTypes from "prop-types";
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
-const Root = (props) => {
+const Root = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <Outlet></Outlet>
+      <Toaster />
     </div>
   );
 };

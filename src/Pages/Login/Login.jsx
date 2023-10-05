@@ -1,11 +1,26 @@
 import { Link } from "react-router-dom";
 import NavBar from "../../Components/Header/NavBar/NavBar";
+import useAuthData from "../../Hook/useAuthData/useAuthData";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
+  const { signIn } = useAuthData();
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    console.log(form.get("email"), form.get("password"));
+    const email = form.get("email");
+    const password = form.get("password");
+
+    // Sign in
+    signIn(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Successfully Login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // clear target
     event.target.reset();
