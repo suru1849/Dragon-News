@@ -3,7 +3,7 @@ import moment from "moment";
 
 const Header = () => {
   return (
-    <div>
+    <div className="text-center">
       <img className="w-[471px] h-[60px] mt-12 mb-5 mx-auto" src={logo} />
       <p className="text-lg text-gray-500 font-normal">
         Journalism Without Fear or Favour
